@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-export default class TodoItem extends Component {
+import PropTypes from "prop-types";
+class TodoItem extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -13,3 +14,13 @@ export default class TodoItem extends Component {
     return <div onClick={this.handleClick}>{content}</div>;
   }
 }
+TodoItem.propTypes = {
+  content: PropTypes.string.isRequired, //如果没传值，就不会进行检测
+  deleteItem: PropTypes.func,
+  index: PropTypes.number
+};
+// 设置默认值
+TodoItem.defaultProps = {
+  content: "hello word"
+};
+export default TodoItem;
