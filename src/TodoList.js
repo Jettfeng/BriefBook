@@ -1,11 +1,26 @@
-import React, { Component,Fragment } from "react";
+import React, { Component, Fragment } from "react";
 
 class TodoList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: "",
+      list: []
+    };
+  }
+  handleInputChange(e) {
+    this.setState({ inputValue: e.target.value });
+    console.log(e.target.value);
+  }
   render() {
     return (
       <Fragment>
         <div>
-          <input /> <button>提交</button>
+          <input
+            value={this.state.inputValue}
+            onChange={this.handleInputChange.bind(this)}
+          />
+          <button>提交</button>
         </div>
         <ul>
           <li>学英语</li>
