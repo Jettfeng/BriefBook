@@ -7,24 +7,53 @@ class TodoList extends Component {
       inputValue: "",
       list: []
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleBtnClick = this.handleBtnClick.bind(this);
+    this.handleItemDelete = this.handleItemDelete.bind(this);
+  }
+  getTodoItem() {
+    return this.state.list.map((item, index) => {
+      return (
+        <TodoItem
+          key={index}
+          content={item}
+          index={index}
+          deleteItem={this.handleItemDelete}
+        />
+      );
+    });
   }
   handleInputChange(e) {
-    this.setState({ inputValue: e.target.value });
-    console.log(e.target.value);
+    const value = e.target.value;
+    // this.setState为异步，所以value必须在外面定义，否则报错
+    this.setState(() => ({
+      inputValue: value
+    }));
+    // this.setState({ inputValue: e.target.value });
+    // console.log(e.target.value);
   }
   handleBtnClick() {
-    this.setState({
-      list: [...this.state.list, this.state.inputValue],
+    this.setState(prevState => ({
+      list: [...prevState.list, prevState.inputValue],
       inputValue: ""
-    });
+    }));
+    // this.setState({
+    //   list: [...this.state.list, this.state.inputValue],
+    //   inputValue: ""
+    // });
   }
   // 删除
   handleItemDelete(index) {
     // immutable
     // state不允许我们做任何的改变，只能修改拷贝后的副本
-    const list = [...this.state.list];
-    list.splice(index, 1);
-    this.setState({ list });
+    // const list = [...this.state.list];
+    // list.splice(index, 1);
+    // this.setState({ list });
+    this.setState(prevState => {
+      const list = [...prevState.list];
+      list.splice(index, 1);
+      return { list };
+    });
   }
   render() {
     return (
@@ -34,23 +63,11 @@ class TodoList extends Component {
           <input
             id="insertArea"
             value={this.state.inputValue}
-            onChange={this.handleInputChange.bind(this)}
+            onChange={this.handleInputChange}
           />
-          <button onClick={this.handleBtnClick.bind(this)}>提交</button>
+          <button onClick={this.handleBtnClick}>提交</button>
         </div>
-        <ul>
-          {this.state.list.map((item, index) => {
-            return (
-              <div key={index}>
-                <TodoItem
-                  content={item}
-                  index={index}
-                  deleteItem={this.handleItemDelete.bind(this)}
-                />
-              </div>
-            );
-          })}
-        </ul>
+        <ul>{this.getTodoItem()}</ul>
       </Fragment>
     );
   }
