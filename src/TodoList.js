@@ -12,6 +12,20 @@ class TodoList extends Component {
     this.setState({ inputValue: e.target.value });
     console.log(e.target.value);
   }
+  handleBtnClick() {
+    this.setState({
+      list: [...this.state.list, this.state.inputValue],
+      inputValue: ""
+    });
+  }
+  // 删除
+  handleItemDelete(index) {
+    // immutable
+    // state不允许我们做任何的改变，只能修改拷贝后的副本
+    const list = [...this.state.list];
+    list.splice(index, 1);
+    this.setState({ list });
+  }
   render() {
     return (
       <Fragment>
@@ -20,11 +34,16 @@ class TodoList extends Component {
             value={this.state.inputValue}
             onChange={this.handleInputChange.bind(this)}
           />
-          <button>提交</button>
+          <button onClick={this.handleBtnClick.bind(this)}>提交</button>
         </div>
         <ul>
-          <li>学英语</li>
-          <li>学英语</li>
+          {this.state.list.map((item, index) => {
+            return (
+              <li key={index} onClick={this.handleItemDelete.bind(this, index)}>
+                {item}
+              </li>
+            );
+          })}
         </ul>
       </Fragment>
     );
