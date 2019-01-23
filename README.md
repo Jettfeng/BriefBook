@@ -40,3 +40,19 @@ react 开发简书项目
 ['div',{id:'abc'},['span',{},'bye bye']]
 <p>7.比较原始虚拟dom和新的虚拟dom的区别，找出却别是span中的内容(极大的提高了性能)</p>
 <p>8.直接操作dom，改变span中的内容</p>
+
+<h2>4-5 深入了解虚拟DOM</h2>
+<p>1.state数据</p>
+<p>2.jsx模板</p>
+
+<p>3.生成虚拟dom(虚拟dom就是一个js对象，用它来描述真实dom)</p>
+['div',{id:'abc'},['span',{},'hello word']]
+
+<p>4.用虚拟dom的结构生成真实的dom来显示</p>
+<div id='abc'><span>hello word</span></div>
+
+<p>5.state发生变化</p>
+<p>6.数据+模板生成新的虚拟dom</p>
+['div',{id:'abc'},['span',{},'bye bye']]
+<p>7.比较原始虚拟dom和新的虚拟dom的区别，找出却别是span中的内容(极大的提高了性能)</p>
+<p>8.直接操作dom，改变span中的内容</p>
