@@ -11,6 +11,7 @@ class TodoList extends Component {
     this.handleBtnClick = this.handleBtnClick.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this);
   }
+  
   getTodoItem() {
     return this.state.list.map((item, index) => {
       return (

@@ -9,13 +9,17 @@ class TodoItem extends Component {
     const { deleteItem, index } = this.props;
     deleteItem(index);
   }
-  componentWillReceiveProps() {
-    // 一个组件要从父组件接收参数
-    // 只要父组件的render函数重新执行了，子组件的这个生命周期就会被执行
-    // 如果这个组件第一次存在于父组件中，该生命周期不会执行
-    console.log("componentWillReceiveProps");
+  shouldComponentUpdate(nextProps, nextState) {
+    // 对比数据
+    if (nextProps.content !== this.props.content) {
+      return true;
+    } else {
+      return false;
+    }
   }
   render() {
+    console.log("child render");
+
     const { content } = this.props;
     return <div onClick={this.handleClick}>{content}</div>;
   }
