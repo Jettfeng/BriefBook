@@ -15,7 +15,7 @@ class TodoItem extends Component {
   }
 }
 TodoItem.propTypes = {
-  content: PropTypes.string.isRequired, //如果没传值，就不会进行检测
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), //如果没传值，就不会进行检测
   deleteItem: PropTypes.func,
   index: PropTypes.number
 };

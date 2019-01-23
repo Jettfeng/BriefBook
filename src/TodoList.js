@@ -24,7 +24,9 @@ class TodoList extends Component {
     });
   }
   handleInputChange(e) {
-    const value = e.target.value;
+    // console.log(this.input);
+    // const value = e.target.value;
+    const value = this.input.value;
     // this.setState为异步，所以value必须在外面定义，否则报错
     this.setState(() => ({
       inputValue: value
@@ -33,10 +35,16 @@ class TodoList extends Component {
     // console.log(e.target.value);
   }
   handleBtnClick() {
-    this.setState(prevState => ({
-      list: [...prevState.list, prevState.inputValue],
-      inputValue: ""
-    }));
+    this.setState(
+      prevState => ({
+        list: [...prevState.list, prevState.inputValue],
+        inputValue: ""
+      }),
+      () => {
+        console.log(this.ul.querySelectorAll("div"));
+      }
+    );
+    // setState接收2个参数，第一个娃儿prevState，第二个位回调函数
     // this.setState({
     //   list: [...this.state.list, this.state.inputValue],
     //   inputValue: ""
@@ -64,10 +72,19 @@ class TodoList extends Component {
             id="insertArea"
             value={this.state.inputValue}
             onChange={this.handleInputChange}
+            ref={input => {
+              this.input = input;
+            }}
           />
           <button onClick={this.handleBtnClick}>提交</button>
         </div>
-        <ul>{this.getTodoItem()}</ul>
+        <ul
+          ref={ul => {
+            this.ul = ul;
+          }}
+        >
+          {this.getTodoItem()}
+        </ul>
       </Fragment>
     );
   }
