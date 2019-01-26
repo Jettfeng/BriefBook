@@ -25,6 +25,10 @@ class TodoList extends Component {
     store.dispatch(action);
     console.log("handleBtnClick");
   }
+  handleItemDelete(index) {
+    const action = { type: "delete_todo_item", index };
+    store.dispatch(action);
+  }
   render() {
     return (
       <div style={{ marginTop: "10px", marginLeft: "10px" }}>
@@ -43,7 +47,11 @@ class TodoList extends Component {
           style={{ marginTop: "10px", width: "300px" }}
           bordered
           dataSource={this.state.list}
-          renderItem={item => <List.Item>{item}</List.Item>}
+          renderItem={(item, index) => (
+            <List.Item onClick={this.handleItemDelete.bind(this, index)}>
+              {item}
+            </List.Item>
+          )}
         />
       </div>
     );
