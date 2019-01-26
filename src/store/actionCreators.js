@@ -19,7 +19,18 @@ export const getDeleteItemAction = index => ({
   index
 });
 const data = ["lee", "dell", "james"];
-export const initListAction = () => ({
+export const initListAction = (data) => ({
   type: INIT_LIST_DATA,
-  data: data
+  data
 });
+
+export const getTodoList = () => {
+  return dispatch => {
+    const action = initListAction(data);
+    dispatch(action);
+    // axios.get("").then(res => {
+    //   const action = initListAction();
+    //   store.dispatch(action);
+    // });
+  };
+};

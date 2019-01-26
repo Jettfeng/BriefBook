@@ -4,11 +4,10 @@ import store from "./store";
 import {
   getInputChangeAction,
   getAddItemAction,
-  getDeleteItemAction,
-  initListAction
+  getDeleteItemAction
 } from "./store/actionCreators";
+import { getTodoList } from "./store/actionCreators";
 import TodoListUI from "./TodoListUI";
-import axios from "axios";
 
 class TodoList extends Component {
   constructor(props) {
@@ -21,9 +20,10 @@ class TodoList extends Component {
     store.subscribe(this.handleStoreChange);
   }
   componentDidMount() {
-    
-       const action = initListAction();
-      store.dispatch(action);
+    const action = getTodoList();
+    store.dispatch(action);
+    // const action = initListAction();
+    // store.dispatch(action);
     // axios.get("").then(res => {
     //   const action = initListAction();
     //   store.dispatch(action);
