@@ -1,32 +1,78 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-class TodoList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  handleInputChange(e) {
-    console.log(e.target.value);
-  }
-  handleClick() {}
-  render() {
-    return (
+
+const TodoList = props => {
+  const {
+    inputValue,
+    list,
+    changeInputValue,
+    handleClick,
+    handleDelete
+  } = props;
+  return (
+    <div>
       <div>
-        <div>
-          <input
-            value={this.props.inputValue}
-            placeholder="xxxx"
-            onChange={this.props.changeInputValue}
-          />
-          <button onClick={this.handleClick.bind(this)}>提交</button>
-        </div>
-        <ul>
-          <li>item</li>
-        </ul>
+        <input
+          value={inputValue}
+          placeholder="xxxx"
+          onChange={changeInputValue}
+        />
+        <button onClick={handleClick}>提交</button>
       </div>
-    );
-  }
-}
+      <ul>
+        {list.map((item, index) => (
+          <li
+            key={index}
+            onClick={() => {
+              handleDelete(index);
+            }}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+// class TodoList extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {};
+//   }
+//   render() {
+//     const {
+//       inputValue,
+//       list,
+//       changeInputValue,
+//       handleClick,
+//       handleDelete
+//     } = this.props;
+//     return (
+//       <div>
+//         <div>
+//           <input
+//             value={inputValue}
+//             placeholder="xxxx"
+//             onChange={changeInputValue}
+//           />
+//           <button onClick={handleClick}>提交</button>
+//         </div>
+//         <ul>
+//           {list.map((item, index) => (
+//             <li
+//               key={index}
+//               onClick={() => {
+//                 handleDelete(index);
+//               }}
+//             >
+//               {item}
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//     );
+//   }
+// }
 const mapStateToProps = state => {
   return {
     inputValue: state.inputValue,
@@ -39,7 +85,15 @@ const mapDispatchToProps = dispatch => {
     changeInputValue(e) {
       const action = { type: "change_input_value", value: e.target.value };
       console.log(e.target.value);
-      dispatch(action)
+      dispatch(action);
+    },
+    handleClick() {
+      const action = { type: "add_item" };
+      dispatch(action);
+    },
+    handleDelete(index) {
+      const action = { type: "delete_item", index };
+      dispatch(action);
     }
   };
 };
