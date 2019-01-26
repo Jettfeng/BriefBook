@@ -58,3 +58,6 @@ react 开发简书项目
 <p>8.直接操作dom，改变span中的内容</p>
 <h2> 6-2 无状态组件</h2>
 <p>无状态组件就是一个函数，接收一个props参数，后面使用的props都不带this(如果一个组件只有一个render函数，就可以使用无状态组件，无状态组件 性能更好)</p>
+
+<h2>6-5 什么是Redux的中间件</h2>
+<p>redux中间件指的是action和store之间，就是对dispatch的封装</p>
