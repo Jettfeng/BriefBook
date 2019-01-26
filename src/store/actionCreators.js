@@ -20,11 +20,9 @@ export const getDeleteItemAction = index => ({
   index
 });
 
-const data = ["lee", "dell", "james"];
-
-export const initListAction = () => ({
+export const initListAction = (data) => ({
   type: INIT_LIST_DATA,
-  data: data
+  data
 });
 
 export const getInitList = () => ({

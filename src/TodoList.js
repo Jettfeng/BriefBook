@@ -18,20 +18,13 @@ class TodoList extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleStoreChange = this.handleStoreChange.bind(this);
     this.handleBtnClick = this.handleBtnClick.bind(this);
-    // this.handleItemDelete = this.handleItemDelete.bind(this);
+    this.handleItemDelete = this.handleItemDelete.bind(this);
     store.subscribe(this.handleStoreChange);
   }
   componentDidMount() {
-    // const action = getTodoList();
-    // store.dispatch(action);
     const action = getInitList();
+    store.dispatch(action);
     console.log(action);
-    
-    // store.dispatch(action);
-    // axios.get("").then(res => {
-    //   const action = initListAction();
-    //   store.dispatch(action);
-    // });
   }
   handleInputChange(e) {
     const action = getInputChangeAction(e.target.value);
