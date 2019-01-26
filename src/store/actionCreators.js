@@ -1,4 +1,5 @@
 import {
+  GET_INIT_LIST,
   CHANGE_INPUT_VALUE,
   ADD_TODO_ITEM,
   DELETE_TODO_ITEM,
@@ -18,19 +19,14 @@ export const getDeleteItemAction = index => ({
   type: DELETE_TODO_ITEM,
   index
 });
+
 const data = ["lee", "dell", "james"];
-export const initListAction = (data) => ({
+
+export const initListAction = () => ({
   type: INIT_LIST_DATA,
-  data
+  data: data
 });
 
-export const getTodoList = () => {
-  return dispatch => {
-    const action = initListAction(data);
-    dispatch(action);
-    // axios.get("").then(res => {
-    //   const action = initListAction();
-    //   store.dispatch(action);
-    // });
-  };
-};
+export const getInitList = () => ({
+  type: GET_INIT_LIST
+});

@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import "antd/dist/antd.css";
 import store from "./store";
 import {
+  getInitList,
+  initListAction,
   getInputChangeAction,
   getAddItemAction,
   getDeleteItemAction
 } from "./store/actionCreators";
-import { getTodoList } from "./store/actionCreators";
+// import { getTodoList } from "./store/actionCreators";
 import TodoListUI from "./TodoListUI";
 
 class TodoList extends Component {
@@ -20,9 +22,11 @@ class TodoList extends Component {
     store.subscribe(this.handleStoreChange);
   }
   componentDidMount() {
-    const action = getTodoList();
-    store.dispatch(action);
-    // const action = initListAction();
+    // const action = getTodoList();
+    // store.dispatch(action);
+    const action = getInitList();
+    console.log(action);
+    
     // store.dispatch(action);
     // axios.get("").then(res => {
     //   const action = initListAction();
