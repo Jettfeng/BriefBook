@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Input, Button, List } from "antd";
 
 // 无状态组件就是一个函数，接收一个props参数，后面使用的props都不带this
