@@ -61,3 +61,6 @@ react 开发简书项目
 
 <h2>6-5 什么是Redux的中间件</h2>
 <p>redux中间件指的是action和store之间，就是对dispatch的封装</p>
+
+<h2>7-9 使用 Immutable.js 来管理store中的数据</h2>
+<p>Immutable.js的用法</p>
