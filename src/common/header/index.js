@@ -10,9 +10,33 @@ import {
   NavSearch,
   Addition,
   Button,
-  SearchWrapper
+  SearchWrapper,
+  SearchInfo,
+  SearchInfoTitle,
+  SearchInfoSwitch,
+  SearchInfoList,
+  SearchInfoItem
 } from "./style";
-
+const getListArea = show => {
+  if (show) {
+    return (
+      <SearchInfo>
+        <SearchInfoTitle>
+          热门搜索 <SearchInfoSwitch>换一换</SearchInfoSwitch>
+        </SearchInfoTitle>
+        <SearchInfoList>
+          <SearchInfoItem>Item</SearchInfoItem>
+          <SearchInfoItem>Item</SearchInfoItem>
+          <SearchInfoItem>Item</SearchInfoItem>
+          <SearchInfoItem>Item</SearchInfoItem>
+          <SearchInfoItem>Item</SearchInfoItem>
+        </SearchInfoList>
+      </SearchInfo>
+    );
+  } else {
+    return null;
+  }
+};
 const Header = props => {
   return (
     <HeaderWrapper>
@@ -35,6 +59,7 @@ const Header = props => {
           <i className={props.focused ? "focused iconfont" : "iconfont"}>
             &#xe614;
           </i>
+          {getListArea(props.focused)}
         </SearchWrapper>
       </Nav>
       <Addition>
@@ -47,45 +72,6 @@ const Header = props => {
   );
 };
 
-// class Header extends Component {
-//   render() {
-//     return (
-//       <HeaderWrapper>
-//         <Logo />
-//         <Nav>
-//           <NavItem className="left active">首页</NavItem>
-//           <NavItem className="left">下载App</NavItem>
-//           <NavItem className="right">登录</NavItem>
-//           <NavItem className="right">
-//             <span className="iconfont">&#xe636;</span>
-//           </NavItem>
-//           <SearchWrapper>
-//             <CSSTransition
-//               timeout={200}
-//               in={this.props.focused}
-//               classNames="slide"
-//             >
-//               <NavSearch
-//                 className={this.props.focused ? "focused" : ""}
-//                 onFocus={this.props.handleInputFocus}
-//                 onBlur={this.props.handleInputBlur}
-//               />
-//             </CSSTransition>
-//             <i className={this.props.focused ? "focused iconfont" : "iconfont"}>
-//               &#xe614;
-//             </i>
-//           </SearchWrapper>
-//         </Nav>
-//         <Addition>
-//           <Button className="writting">
-//             <span className="iconfont">&#xe615;</span>写文章
-//           </Button>
-//           <Button className="reg">注册</Button>
-//         </Addition>
-//       </HeaderWrapper>
-//     );
-//   }
-// }
 const mapStateToProps = state => {
   return {
     //   获取state中的header中的focused，以下两种方式等价
