@@ -88,7 +88,9 @@ const Header = props => {
 // }
 const mapStateToProps = state => {
   return {
-    focused: state.header.get("focused")
+    //   获取state中的header中的focused，以下两种方式等价
+    // focused: state.getIn(["header","focused"])
+    focused: state.get("header").get("focused")
   };
 };
 const mapDispatchToProps = dispatch => {

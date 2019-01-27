@@ -64,3 +64,6 @@ react 开发简书项目
 
 <h2>7-9 使用 Immutable.js 来管理store中的数据</h2>
 <p>Immutable.js的用法</p>
+
+<h2>7-10 使用 redux-immutable 统一数据格式</h2>
+<p>安装redux-immutable：npm install redux-immutable</p>
