@@ -1,19 +1,21 @@
 import React, { Component, Fragment } from "react";
+import { Provider } from "react-redux";
 import Header from "./common/header";
+import store from "./store";
 // -------------------------------------------------------
 import { GlobalStyle } from "./style.js";
 import { IconFontGlobalStyle } from "./statics/iconfont/iconfont";
-import axios from "axios";
 // -----------------------------------------------------------
 class App extends Component {
   render() {
     return (
-      <Fragment>
-        <GlobalStyle />
-        <IconFontGlobalStyle />
-        <Header />
-        <div className="dell">hello word</div>
-      </Fragment>
+      <Provider store={store}>
+        <Fragment>
+          <GlobalStyle />
+          <IconFontGlobalStyle />
+          <Header />
+        </Fragment>
+      </Provider>
     );
   }
 }
