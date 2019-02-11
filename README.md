@@ -67,3 +67,10 @@ react 开发简书项目
 
 <h2>7-10 使用 redux-immutable 统一数据格式</h2>
 <p>安装redux-immutable：npm install redux-immutable</p>
+
+<h2>7-12 Ajax获取推荐数据</h2>
+<p>redux-thunk处理在redux中处理异步数据流</p>
+<p> axios
+      .get("/api/headerList.json")
+      .then(res => {
+      }),在react中，首先会在node_modules中查找，如果没有，会在public中查找</p>
