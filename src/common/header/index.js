@@ -20,18 +20,40 @@ import {
 
 class Header extends Component {
   getListArea() {
-    const { focused, list } = this.props;
-    if (focused) {
+    const {
+      focused,
+      list,
+      page,
+      totalPage,
+      mouseIn,
+      handleMouseEnter,
+      handleMouseLeave,
+      handleChangePage
+    } = this.props;
+    const newList = list.toJS(); //immutable对象转换成普通的js对象
+    const pageList = [];
+    if (newList.length) {
+      //如果不加判断，刚开始newList为空，则所有的newList[i]为undefined，会报key
+      for (let i = (page - 1) * 10; i < page * 10; i++) {
+        pageList.push(
+          <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+        );
+      }
+    }
+
+    if (focused || mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <SearchInfoTitle>
-            热门搜索 <SearchInfoSwitch>换一换</SearchInfoSwitch>
+            热门搜索{" "}
+            <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>
+              换一换
+            </SearchInfoSwitch>
           </SearchInfoTitle>
-          <SearchInfoList>
-            {list.map(item => (
-              <SearchInfoItem key={item}>{item}</SearchInfoItem>
-            ))}
-          </SearchInfoList>
+          <SearchInfoList>{pageList}</SearchInfoList>
         </SearchInfo>
       );
     } else {
@@ -39,7 +61,7 @@ class Header extends Component {
     }
   }
   render() {
-    const { focused,handleInputFocus,handleInputBlur } = this.props;
+    const { focused, handleInputFocus, handleInputBlur } = this.props;
     return (
       <HeaderWrapper>
         <Logo />
@@ -51,11 +73,7 @@ class Header extends Component {
             <span className="iconfont">&#xe636;</span>
           </NavItem>
           <SearchWrapper>
-            <CSSTransition
-              timeout={200}
-              in={focused}
-              classNames="slide"
-            >
+            <CSSTransition timeout={200} in={focused} classNames="slide">
               <NavSearch
                 className={focused ? "focused" : ""}
                 onFocus={handleInputFocus}
@@ -84,7 +102,10 @@ const mapStateToProps = state => {
     //   获取state中的header中的focused，以下两种方式等价
     // focused: state.getIn(["header","focused"])
     focused: state.get("header").get("focused"),
-    list: state.getIn(["header", "list"])
+    list: state.getIn(["header", "list"]),
+    page: state.getIn(["header", "page"]),
+    totalPage: state.getIn(["header", "totalPage"]),
+    mouseIn: state.getIn(["header", "mouseIn"])
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -95,6 +116,23 @@ const mapDispatchToProps = dispatch => {
     },
     handleInputBlur() {
       dispatch(actionCreators.searchBlur());
+    },
+    handleMouseEnter() {
+      dispatch(actionCreators.mouseEnter());
+    },
+    handleMouseLeave() {
+      dispatch(actionCreators.mouseLeave());
+    },
+    handleChangePage(page, totalPage) {
+      console.log(page);
+      console.log(totalPage);
+      if (page < totalPage) {
+        dispatch(actionCreators.changePage(page + 1));
+      } else {
+        dispatch(actionCreators.changePage(1));
+      }
+      // if()
+      // dispatch(actionCreators.changePage(page, totalPage));
     }
   };
 };
