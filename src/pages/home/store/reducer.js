@@ -38,6 +38,23 @@ const defaultState = fromJS({
       imgUrl:
         "//upload-images.jianshu.io/upload_images/15381228-5bb50cc6785796c8.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240"
     }
+  ],
+  recommendList: [
+    {
+      id: 1,
+      imgUrl:
+        "https://cdn2.jianshu.io/assets/web/banner-s-3-7123fd94750759acf7eca05b871e9d17.png"
+    },
+    {
+      id: 2,
+      imgUrl:
+        "https://cdn2.jianshu.io/assets/web/banner-s-3-7123fd94750759acf7eca05b871e9d17.png"
+    },
+    {
+      id: 3,
+      imgUrl:
+        "https://cdn2.jianshu.io/assets/web/banner-s-3-7123fd94750759acf7eca05b871e9d17.png"
+    }
   ]
 });
 
