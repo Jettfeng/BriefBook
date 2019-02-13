@@ -2,10 +2,13 @@ import React, { Component, Fragment } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./common/header";
+import Home from "./pages/home/index";
+import Detail from "./pages/detail/index";
 import store from "./store";
 // -------------------------------------------------------
 import { GlobalStyle } from "./style.js";
 import { IconFontGlobalStyle } from "./statics/iconfont/iconfont";
+
 // -----------------------------------------------------------
 class App extends Component {
   render() {
@@ -17,8 +20,8 @@ class App extends Component {
           <Header />
           <Router>
             <Switch>
-              <Route path="/" exact render={() => <div>home</div>} />
-              <Route path="/detail" exact render={() => <div>detail</div>} />
+              <Route path="/" exact component={Home} />
+              <Route path="/detail" exact component={Detail} />
             </Switch>
           </Router>
         </div>
