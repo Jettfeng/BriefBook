@@ -4,21 +4,12 @@ import Topic from "./components/Topic";
 import List from "./components/List";
 import Recommend from "./components/Recommend";
 import Writer from "./components/Writer";
+import { actionCreators } from "./store";
 import { HomeWrapper, HomeLeft, HomeRight } from "./style";
-import axios from "axios";
+
 class Home extends Component {
   componentDidMount() {
-    axios.get("/api/home.json").then(res => {
-      const result = res.data.data;
-      const action = {
-        type: "change_home_data",
-        topicList: result.topicList,
-        articleList: result.articleList,
-        recommendList: result.recommendList
-      };
-      this.props.changeHomeData(action);
-      console.log(result);
-    });
+    this.props.changeHomeData();
   }
   render() {
     return (
@@ -41,8 +32,19 @@ class Home extends Component {
   }
 }
 const mapDispatch = dispatch => ({
-  changeHomeData(action) {
+  changeHomeData() {
+    const action = actionCreators.getHomeInfo();
     dispatch(action);
+    // axios.get("/api/home.json").then(res => {
+    //   const result = res.data.data;
+    //   const action = {
+    //     type: "change_home_data",
+    //     topicList: result.topicList,
+    //     articleList: result.articleList,
+    //     recommendList: result.recommendList
+    //   };
+    //   dispatch(action);
+    // });
   }
 });
 export default connect(
