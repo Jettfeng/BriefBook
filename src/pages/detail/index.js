@@ -4,7 +4,9 @@ import { DetailWrapper, Header, Content } from "./style";
 import { actionCreators } from "./store";
 class Detail extends Component {
   componentDidMount() {
-    this.props.getDetail();
+    console.log(this.props);
+    const id = this.props.match.params.id;
+    this.props.getDetail(id);
   }
   render() {
     return (
@@ -20,8 +22,8 @@ const mapState = state => ({
   content: state.getIn(["detail", "content"])
 });
 const mapDispatch = dispatch => ({
-  getDetail() {
-    dispatch(actionCreators.getDetail());
+  getDetail(id) {
+    dispatch(actionCreators.getDetail(id));
   }
 });
 export default connect(
