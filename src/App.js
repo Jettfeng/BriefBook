@@ -17,12 +17,14 @@ class App extends Component {
         <div>
           <GlobalStyle />
           <IconFontGlobalStyle />
-          <Header />
           <Router>
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/detail" exact component={Detail} />
-            </Switch>
+            <div>
+              <Header />
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/detail" exact component={Detail} />
+              </Switch>
+            </div>
           </Router>
         </div>
       </Provider>
